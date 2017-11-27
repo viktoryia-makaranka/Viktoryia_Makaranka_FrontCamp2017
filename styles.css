@@ -4,8 +4,16 @@
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100%;
+}
+
 body {
-    background: linear-gradient(#649173, #649173);
+    background: #649173;
+    background: -moz-linear-gradient(#649173, #ddece2);
+    background: -webkit-linear-gradient(#649173, #ddece2);
+    background: -o-linear-gradient(#649173, #ddece2);
+    background: -ms-linear-gradient(#649173, #ddece2);
 }
 
 .container {
