@@ -17,54 +17,89 @@ const getQueryStringParams = (params) => {
 };
 
 let articles = [];
+let loading = false;
 
-fetch(`${API_URL}?${getQueryStringParams(params)}`)
-    .then(resp => resp.json(), err => alert('Something went wrong'))
-    .then(resp => {
-        articles = resp.articles;
-    });
+const fetchNews = () => {
+    if (loading) return;
+    loading = true;
+    document.querySelector('.loading-mask').classList.remove('hidden');
+    fetch(`${API_URL}?${getQueryStringParams(params)}`)
+        .then(resp => resp.json(), err => {
+            document.querySelector('.newsLists').classList.add('hidden');
+            document.querySelector('.requestError').classList.remove('hidden');
+        })
+        .then(resp => {
+            articles = resp.articles;
+            document.querySelector('.newsLists').classList.remove('hidden');
+            document.querySelector('.requestError').classList.add('hidden');
+            document.querySelector('.loading-mask').classList.add('hidden');
+            loading = false;
+        });
+};
 
 const createNewsNode = ({url, title, urlToImage, description, source, publishedAt}) => {
     if (!url || !title) return '';
+    date = publishedAt ? new Date(publishedAt) : '';
     return `<div class="newsItem">
-        ${urlToImage ?
-        `<div class="newsItem__image-wrapper">
-            <img src="${urlToImage}"/>
-        </div>`
-        : ''}
         <div class="newsItem__info">
-            <a class="newsItem__title" href="${url}">${title}</a>
-            ${source && source.name || publishedAt ?
-                `<div class="newsItem_public-info">
-                    ${source && source.name ?
-                        `<span>${source.name}</span>`
-                    : ''}
-                    ${source && source.name && publishedAt ?
-                        `<span class="separator"> | </span>`
-                    : ''}
-                    ${publishedAt ?
-                        `<span>${publishedAt}</span>`
-                    : ''}
-                </div>`
-            : ''}
+            <div class="newsItem__header">
+                ${urlToImage ?
+                        `<div class="newsItem__image-wrapper">
+                            <img src="${urlToImage}"/>
+                        </div>`
+                        : ''}
+                <a class="newsItem__title" href="${url}">${title}</a>
+            </div>
             ${description ?
             `<div class="newsItem__description">${description}</div>`
-            : ''}            
+            : ''}
         </div>
+        ${source && source.name || publishedAt ?
+            `<div class="newsItem_public-info">
+                ${publishedAt ?
+                    `<span>${date.getMonth()+1}.${date.getDate()}.${date.getFullYear()}</span>`
+                : ''}
+                ${source && source.name && publishedAt ?
+                    `<span class="separator"> | </span>`
+                : ''}
+                ${source && source.name ?
+                    `<span>${source.name}</span>`
+                : ''}
+            </div>`
+        : ''}
     </div>`;
 };
 
 const createNewsList = (sourceId, data) => {
     let listNode = document.querySelector(`.newsList--${sourceId}`);
+
     if (!listNode) {
-        listNode = document.createElement(`<div class="newsList newsList--${sourceId}"></div>`);
+        listNode = document.createElement('div');
+        listNode.classList = `newsList newsList--${sourceId}`;
         document.querySelector('.newsLists').appendChild(listNode);
+        const sourceData = data.filter(sourceItem => sourceItem.source.id === sourceId);
+        listNode.innerHTML = sourceData.reduce((htmlText, item) => {
+            return `${htmlText}${createNewsNode(item)}`;
+        }, '');
+    } else {
+        listNode.classList.toggle('hidden');
     }
-    const sourceData = data.filter(sourceItem => sourceItem.source.id === sourceId);
-    listNode.innerHTML = sourceData.reduce((htmlText, item) => {
-        return `${htmlText}${createNewsNode(item)}`;
-    }, '');
 };
+
+window.onload = () => {
+    fetchNews();
+    document.querySelector('.newsListsButtons').onclick = ({ target }) => {
+        if (document.querySelector('.requestError').classList.contains('hidden')) {
+            target.classList.toggle('newsListButton--active');
+            createNewsList(target.dataset.id, articles);
+        } else {
+            fetchNews();
+        }
+
+    };
+};
+
+
 
 
 
