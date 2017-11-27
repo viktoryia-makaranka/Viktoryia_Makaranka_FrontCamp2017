@@ -24,16 +24,19 @@ const fetchNews = () => {
     loading = true;
     document.querySelector('.loading-mask').classList.remove('hidden');
     fetch(`${API_URL}?${getQueryStringParams(params)}`)
-        .then(resp => resp.json(), err => {
-            document.querySelector('.newsLists').classList.add('hidden');
-            document.querySelector('.requestError').classList.remove('hidden');
-        })
+        .then(resp => resp.json())
         .then(resp => {
             articles = resp.articles;
             document.querySelector('.newsLists').classList.remove('hidden');
             document.querySelector('.requestError').classList.add('hidden');
             document.querySelector('.loading-mask').classList.add('hidden');
             loading = false;
+        })
+        .catch(err => {
+           document.querySelector('.newsLists').classList.add('hidden');
+           document.querySelector('.requestError').classList.remove('hidden');
+           document.querySelector('.loading-mask').classList.add('hidden');
+           loading = false;
         });
 };
 
