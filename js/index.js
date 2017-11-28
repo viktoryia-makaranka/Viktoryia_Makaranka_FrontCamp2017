@@ -51,7 +51,7 @@ const createNewsNode = ({url, title, urlToImage, description, source, publishedA
                             <img src="${urlToImage}"/>
                         </div>`
                         : ''}
-                <a class="newsItem__title" href="${url}">${title}</a>
+                <a class="newsItem__title" href="${url}" target="_blanc">${title}</a>
             </div>
             ${description ?
             `<div class="newsItem__description">${description}</div>`
