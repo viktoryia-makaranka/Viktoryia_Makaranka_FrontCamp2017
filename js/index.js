@@ -23,7 +23,7 @@ const fetchNews = () => {
     if (loading) return;
     loading = true;
     document.querySelector('.loading-mask').classList.remove('hidden');
-    fetch(`${API_URL}?${getQueryStringParams(params)}`)
+    fetch(`${API_URL}?${getQueryStringParams(params)}`, { mode: 'cors' })
         .then(resp => resp.json())
         .then(resp => {
             articles = resp.articles;
@@ -101,8 +101,3 @@ window.onload = () => {
 
     };
 };
-
-
-
-
-
