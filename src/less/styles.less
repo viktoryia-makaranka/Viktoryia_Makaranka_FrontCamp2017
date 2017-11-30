@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background: #649173;
+    background: -moz-linear-gradient(#649173, #ddece2);
+    background: -webkit-linear-gradient(#649173, #ddece2);
+    background: -o-linear-gradient(#649173, #ddece2);
+    background: -ms-linear-gradient(#649173, #ddece2);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.newsLists {
+    flex-wrap: wrap;
+
+    &, &Buttons {
+        display: flex;
+        width: 100%;
+    }
+}
+
+.newsList {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    flex: 1 3 33.3%;
+
+    &Button {
+        width: 80px;
+        height: 80px;
+        margin: 10px;
+        cursor: pointer;
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 3px;
+        border: 2px solid lightgrey;
+
+        &[data-id='bbc-news'] {
+            background: url('../images/bbc.png');
+            background-size: cover;
+        }
+
+        &[data-id='abc-news'] {
+            background: url('../images/abc.png');
+            background-size: cover;
+        }
+
+        &[data-id='google-news'] {
+            background: url('../images/google.png');
+            background-size: cover;
+        }
+        &--active {
+            border-color: #35e29a;
+        }
+    }
+}
+.newsItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 3px;
+    border: 2px solid lightgrey;
+
+    img {
+        width: 110px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        padding-top: 5px;
+    }
+
+    &__header {
+        display: flex;
+        width: 100%;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        align-self: center;
+        margin-bottom: 10px;
+        font-weight: 700;
+        font-size: 18px;
+        text-decoration: none;
+        color: #0e6d45;
+    }
+
+    &__title:hover {
+        text-decoration: underline;
+    }
+
+    &__public-info {
+        color: grey;
+        margin-top: 10px;
+
+        span {
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+}
+
+.separator {
+    margin: 0 5px;
+}
+
+.requestError {
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px;
+}
+.loading-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-weight: 700;
+    font-size: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.hidden {
+    display: none;
+}

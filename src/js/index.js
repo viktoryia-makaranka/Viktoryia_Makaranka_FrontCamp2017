@@ -1,5 +1,9 @@
-const API_KEY = '60b3be23ad924ebbb2e942ceeb1013de';
-const API_URL = 'https://newsapi.org/v2/top-headlines';
+import '../less/styles.less';
+
+require('element-dataset').default();
+
+import { API_KEY, API_URL } from './const';
+
 const sources = ['bbc-news', 'abc-news', 'google-news'];
 
 const params = {
@@ -42,7 +46,7 @@ const fetchNews = () => {
 
 const createNewsNode = ({url, title, urlToImage, description, source, publishedAt}) => {
     if (!url || !title) return '';
-    date = publishedAt ? new Date(publishedAt) : '';
+    const date = publishedAt ? new Date(publishedAt) : '';
     return `<div class="newsItem">
         <div class="newsItem__info">
             <div class="newsItem__header">
@@ -58,7 +62,7 @@ const createNewsNode = ({url, title, urlToImage, description, source, publishedA
             : ''}
         </div>
         ${source && source.name || publishedAt ?
-            `<div class="newsItem_public-info">
+            `<div class="newsItem__public-info">
                 ${publishedAt ?
                     `<span>${date.getMonth()+1}.${date.getDate()}.${date.getFullYear()}</span>`
                 : ''}
@@ -78,7 +82,8 @@ const createNewsList = (sourceId, data) => {
 
     if (!listNode) {
         listNode = document.createElement('div');
-        listNode.classList = `newsList newsList--${sourceId}`;
+        listNode.classList.add('newsList');
+        listNode.classList.add(`newsList--${sourceId}`);
         document.querySelector('.newsLists').appendChild(listNode);
         const sourceData = data.filter(sourceItem => sourceItem.source.id === sourceId);
         listNode.innerHTML = sourceData.reduce((htmlText, item) => {
