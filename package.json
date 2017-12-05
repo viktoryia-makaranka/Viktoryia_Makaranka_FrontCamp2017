@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "build:watch": "webpack --watch --config webpack.config.js",
     "build:style": "stylelint less/*.less",
     "lint:style": "stylelint less/*.less",
     "lint:js": "eslint . --ext .js --max-warnings 0"

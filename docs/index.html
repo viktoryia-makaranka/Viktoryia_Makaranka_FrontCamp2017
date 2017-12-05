@@ -7,14 +7,41 @@
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
 <body>
-    <div class="container">
-        <div class="newsListsButtons">
-            <div class="newsListButton" data-id="bbc-news" title="BBC News"></div>
-            <div class="newsListButton" data-id="abc-news" title="ABC News"></div>
-            <div class="newsListButton" data-id="google-news" title="Google News"></div>
+    <div class="newsLists-wrapper">
+        <header>
+            <div class="container">
+                <h1>News</h1>
+            </div>
+        </header>
+        <div class="newsLists-content">
+            <div class="newsListsButtons container">
+                <input type="checkbox" name="newsSource" value="bbc-news" id="bbc-news"/>
+                <label for="bbc-news" class="newsListButton" data-id="bbc-news" title="BBC News"></label>
+                <input type="checkbox" name="newsSource" value="abc-news" id="abc-news"/>
+                <label for="abc-news" class="newsListButton" data-id="abc-news" title="ABC News"></label>
+                <input type="checkbox" name="newsSource" value="google-news" id="google-news"/>
+                <label for="google-news" class="newsListButton" data-id="google-news" title="Google News"></label>
+            </div>
+            <div class="newsLists container">
+                <div class="newsList newsList--bbc-news hidden">
+                    <h2 class="newsItem newsList-title">BBC News</h2>
+                </div>
+                <div class="newsList newsList--abc-news hidden">
+                    <h2 class="newsItem newsList-title">ABC News</h2>
+                </div>
+                <div class="newsList newsList--google-news hidden">
+                    <h2 class="newsItem newsList-title">Google News</h2>
+                </div>
+            </div>
+            <div class="requestError hidden container">Something went wrong</div>
         </div>
-        <div class="newsLists"></div>
-        <div class="requestError hidden">Something went wrong</div>
+        <footer>
+            <div class="container">
+                <div>API provided by
+                    <a href="https://newsapi.org/" title="newsapi.org">News API</a>
+                </div>
+            </div>
+        </footer>
     </div>
     <div class="loading-mask hidden">Loading...</div>
     <script type="text/javascript" src="bundle.js"></script>

@@ -3910,46 +3910,11 @@ __webpack_require__(137);
 
 var _const = __webpack_require__(138);
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 __webpack_require__(139).default();
 
 var sources = ['bbc-news', 'abc-news', 'google-news'];
-
-var params = {
-    'language': 'en',
-    'sources': sources.join(', '),
-    'apiKey': _const.API_KEY
-};
-
-var getQueryStringParams = function getQueryStringParams(params) {
-    var query = [];
-    for (var p in params) {
-        query.push(encodeURIComponent(p) + '=' + encodeURIComponent(params[p]));
-    }
-    return query.join('&');
-};
-
-var articles = [];
-var loading = false;
-
-var fetchNews = function fetchNews() {
-    if (loading) return;
-    loading = true;
-    document.querySelector('.loading-mask').classList.remove('hidden');
-    fetch(_const.API_URL + '?' + getQueryStringParams(params), { mode: 'cors' }).then(function (resp) {
-        return resp.json();
-    }).then(function (resp) {
-        articles = resp.articles;
-        document.querySelector('.newsLists').classList.remove('hidden');
-        document.querySelector('.requestError').classList.add('hidden');
-        document.querySelector('.loading-mask').classList.add('hidden');
-        loading = false;
-    }).catch(function (err) {
-        document.querySelector('.newsLists').classList.add('hidden');
-        document.querySelector('.requestError').classList.remove('hidden');
-        document.querySelector('.loading-mask').classList.add('hidden');
-        loading = false;
-    });
-};
 
 var createNewsNode = function createNewsNode(_ref) {
     var url = _ref.url,
@@ -3961,40 +3926,61 @@ var createNewsNode = function createNewsNode(_ref) {
 
     if (!url || !title) return '';
     var date = publishedAt ? new Date(publishedAt) : '';
-    return '<div class="newsItem">\n        <div class="newsItem__info">\n            <div class="newsItem__header">\n                ' + (urlToImage ? '<div class="newsItem__image-wrapper">\n                            <img src="' + urlToImage + '"/>\n                        </div>' : '') + '\n                <a class="newsItem__title" href="' + url + '" target="_blanc">' + title + '</a>\n            </div>\n            ' + (description ? '<div class="newsItem__description">' + description + '</div>' : '') + '\n        </div>\n        ' + (source && source.name || publishedAt ? '<div class="newsItem__public-info">\n                ' + (publishedAt ? '<span>' + (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear() + '</span>' : '') + '\n                ' + (source && source.name && publishedAt ? '<span class="separator"> | </span>' : '') + '\n                ' + (source && source.name ? '<span>' + source.name + '</span>' : '') + '\n            </div>' : '') + '\n    </div>';
+    return '<div class="newsItem">\n        <div class="newsItem__info">\n            <div class="newsItem__header">\n                ' + (urlToImage ? '<div class="newsItem__image-wrapper">\n                    <img src="' + urlToImage + '"/>\n                </div>' : '') + '\n                <a class="newsItem__title" href="' + url + '" target="_blanc">' + title + '</a>\n            </div>\n            ' + (description ? '<div class="newsItem__description">' + description + '</div>' : '') + '\n        </div>\n        ' + (source && source.name || publishedAt ? '<div class="newsItem__public-info">\n                ' + (publishedAt ? '<span>' + (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear() + '</span>' : '') + '\n                ' + (source && source.name && publishedAt ? '<span class="separator"> | </span>' : '') + '\n                ' + (source && source.name ? '<span>' + source.name + '</span>' : '') + '\n            </div>' : '') + '\n    </div>';
 };
 
-var createNewsList = function createNewsList(sourceId, data) {
+var fillNewsList = function fillNewsList(sourceId, data) {
     var listNode = document.querySelector('.newsList--' + sourceId);
+    var sourceData = data.filter(function (sourceItem) {
+        return sourceItem.source.id === sourceId;
+    });
+    listNode.innerHTML = sourceData.reduce(function (htmlText, item) {
+        return '' + htmlText + createNewsNode(item);
+    }, listNode.innerHTML);
+};
 
-    if (!listNode) {
-        listNode = document.createElement('div');
-        listNode.classList.add('newsList');
-        listNode.classList.add('newsList--' + sourceId);
-        document.querySelector('.newsLists').appendChild(listNode);
-        var sourceData = data.filter(function (sourceItem) {
-            return sourceItem.source.id === sourceId;
-        });
-        listNode.innerHTML = sourceData.reduce(function (htmlText, item) {
-            return '' + htmlText + createNewsNode(item);
-        }, '');
-    } else {
-        listNode.classList.toggle('hidden');
+var getQueryStringParams = function getQueryStringParams(params) {
+    var query = [];
+    for (var p in params) {
+        query.push(encodeURIComponent(p) + '=' + encodeURIComponent(params[p]));
     }
+    return query.join('&');
+};
+
+var fetchNews = function fetchNews() {
+    document.querySelector('.loading-mask').classList.remove('hidden');
+    var params = {
+        'language': 'en',
+        'sources': sources.join(', '),
+        'apiKey': _const.API_KEY
+    };
+    fetch(_const.API_URL + '?' + getQueryStringParams(params), { mode: 'cors' }).then(function (resp) {
+        return resp.json();
+    }).then(function (resp) {
+        sources.forEach(function (source) {
+            fillNewsList(source, resp.articles);
+        });
+        document.querySelector('.newsLists').classList.remove('hidden');
+        document.querySelector('.requestError').classList.add('hidden');
+        document.querySelector('.loading-mask').classList.add('hidden');
+    }).catch(function (err) {
+        document.querySelector('.newsLists').classList.add('hidden');
+        document.querySelector('.requestError').classList.remove('hidden');
+        document.querySelector('.loading-mask').classList.add('hidden');
+    });
 };
 
 window.onload = function () {
     fetchNews();
-    document.querySelector('.newsListsButtons').onclick = function (_ref2) {
-        var target = _ref2.target;
+    var nodesArray = [].concat(_toConsumableArray(document.querySelectorAll('input[name="newsSource"]')));
+    nodesArray.forEach(function (node) {
+        node.addEventListener('change', function (_ref2) {
+            var target = _ref2.target;
 
-        if (document.querySelector('.requestError').classList.contains('hidden')) {
-            target.classList.toggle('newsListButton--active');
-            createNewsList(target.dataset.id, articles);
-        } else {
-            fetchNews();
-        }
-    };
+            var el = document.querySelector('.newsList--' + target.value);
+            if (el) el.classList.toggle('hidden');
+        });
+    });
 };
 
 /***/ }),
