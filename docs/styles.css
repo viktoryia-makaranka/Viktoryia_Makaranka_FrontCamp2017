@@ -89,15 +89,15 @@ header a {
   border: 2px solid lightgrey;
 }
 .newsListButton[data-id='bbc-news'] {
-  background: url(./images/25ef445b75c5e8cb2623d4c6793d563c.png);
+  background: url(images/bbc.png);
   background-size: cover;
 }
 .newsListButton[data-id='abc-news'] {
-  background: url(./images/640ceaa69109586d1ec92d227d337fb3.png);
+  background: url(images/abc.png);
   background-size: cover;
 }
 .newsListButton[data-id='google-news'] {
-  background: url(./images/69b088399d58f6546e62d4bf3124d821.png);
+  background: url(images/google.png);
   background-size: cover;
 }
 input[type="checkbox"]:checked + .newsListButton {

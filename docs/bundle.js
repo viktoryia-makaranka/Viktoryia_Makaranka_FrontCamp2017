@@ -3742,8 +3742,8 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 
 var global = __webpack_require__(129);
 var core = __webpack_require__(64);
-var ctx = __webpack_require__(345);
-var hide = __webpack_require__(347);
+var ctx = __webpack_require__(346);
+var hide = __webpack_require__(348);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -3819,7 +3819,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 /* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(348);
+var anObject = __webpack_require__(349);
 var IE8_DOM_DEFINE = __webpack_require__(131);
 var toPrimitive = __webpack_require__(132);
 var dP = Object.defineProperty;
@@ -3842,7 +3842,7 @@ exports.f = __webpack_require__(49) ? Object.defineProperty : function definePro
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(49) && !__webpack_require__(92)(function () {
-  return Object.defineProperty(__webpack_require__(349)('div'), 'a', { get: function () { return 7; } }).a != 7;
+  return Object.defineProperty(__webpack_require__(350)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
 
@@ -3883,8 +3883,8 @@ module.exports = function (bitmap, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(353);
-var defined = __webpack_require__(355);
+var IObject = __webpack_require__(354);
+var defined = __webpack_require__(356);
 module.exports = function (it) {
   return IObject(defined(it));
 };
@@ -9580,11 +9580,13 @@ module.exports = function (regExp, replace) {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _const = __webpack_require__(340);
+__webpack_require__(340);
+
+var _const = __webpack_require__(341);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-__webpack_require__(341).default();
+__webpack_require__(342).default();
 
 var sources = ['bbc-news', 'abc-news', 'google-news'];
 
@@ -9659,6 +9661,12 @@ window.onload = function () {
 
 /***/ }),
 /* 340 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9672,14 +9680,14 @@ var API_KEY = exports.API_KEY = '60b3be23ad924ebbb2e942ceeb1013de';
 var API_URL = exports.API_URL = 'https://newsapi.org/v2/top-headlines';
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_define_property__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_define_property__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_define_property___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_define_property__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_own_property_descriptor__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_own_property_descriptor__ = __webpack_require__(351);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_own_property_descriptor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_own_property_descriptor__);
 
 //
@@ -9755,16 +9763,16 @@ function elementDatasetPolyfill() {
 
 
 /***/ }),
-/* 342 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(343), __esModule: true };
-
-/***/ }),
 /* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(344);
+module.exports = { "default": __webpack_require__(344), __esModule: true };
+
+/***/ }),
+/* 344 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(345);
 var $Object = __webpack_require__(64).Object;
 module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
@@ -9772,7 +9780,7 @@ module.exports = function defineProperty(it, key, desc) {
 
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(128);
@@ -9781,11 +9789,11 @@ $export($export.S + $export.F * !__webpack_require__(49), 'Object', { defineProp
 
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(346);
+var aFunction = __webpack_require__(347);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -9807,7 +9815,7 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -9817,7 +9825,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(130);
@@ -9831,7 +9839,7 @@ module.exports = __webpack_require__(49) ? function (object, key, value) {
 
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(91);
@@ -9842,7 +9850,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(91);
@@ -9855,16 +9863,16 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 350 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(351), __esModule: true };
-
-/***/ }),
 /* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(352);
+module.exports = { "default": __webpack_require__(352), __esModule: true };
+
+/***/ }),
+/* 352 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(353);
 var $Object = __webpack_require__(64).Object;
 module.exports = function getOwnPropertyDescriptor(it, key) {
   return $Object.getOwnPropertyDescriptor(it, key);
@@ -9872,14 +9880,14 @@ module.exports = function getOwnPropertyDescriptor(it, key) {
 
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
 var toIObject = __webpack_require__(134);
-var $getOwnPropertyDescriptor = __webpack_require__(356).f;
+var $getOwnPropertyDescriptor = __webpack_require__(357).f;
 
-__webpack_require__(359)('getOwnPropertyDescriptor', function () {
+__webpack_require__(360)('getOwnPropertyDescriptor', function () {
   return function getOwnPropertyDescriptor(it, key) {
     return $getOwnPropertyDescriptor(toIObject(it), key);
   };
@@ -9887,11 +9895,11 @@ __webpack_require__(359)('getOwnPropertyDescriptor', function () {
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(354);
+var cof = __webpack_require__(355);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -9899,7 +9907,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -9910,7 +9918,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports) {
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -9921,14 +9929,14 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(357);
+var pIE = __webpack_require__(358);
 var createDesc = __webpack_require__(133);
 var toIObject = __webpack_require__(134);
 var toPrimitive = __webpack_require__(132);
-var has = __webpack_require__(358);
+var has = __webpack_require__(359);
 var IE8_DOM_DEFINE = __webpack_require__(131);
 var gOPD = Object.getOwnPropertyDescriptor;
 
@@ -9943,14 +9951,14 @@ exports.f = __webpack_require__(49) ? gOPD : function getOwnPropertyDescriptor(O
 
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 358 */
+/* 359 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -9960,7 +9968,7 @@ module.exports = function (it, key) {
 
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives

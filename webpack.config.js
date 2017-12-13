@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 const extractLess = new ExtractTextPlugin({
   filename: 'styles.css',
@@ -33,7 +34,18 @@ module.exports = {
       }, {
         test: /\.less$/,
         use: extractLess.extract({
-          use: ['css-loader', 'postcss-loader', 'less-loader'],
+          use: [{
+            loader: 'css-loader',
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [autoprefixer({
+                browsers: ['last 2 version', 'ie >= 10'],
+              })],
+            },
+          }, {
+            loader: 'less-loader',
+          }],
           fallback: 'style-loader',
         }),
       }, {
@@ -41,10 +53,11 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: './images/[hash].[ext]',
+            name: 'images/[name].[ext]',
           },
         },
-      }],
+      },
+    ],
   },
   plugins: [
     extractLess,

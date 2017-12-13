@@ -1,3 +1,5 @@
+import '../less/styles.less';
+
 require('element-dataset').default();
 
 import { API_KEY, API_URL } from './const';
