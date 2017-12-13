@@ -12,13 +12,13 @@ footer, header {
     background: #0e6d45;
     color: #ffffff;
 
-    & .container {
+    .container {
         h1, div {
             margin: 0 10px;
         }
     }
 
-    & a {
+    a {
         color: #ffffff;
     }
 }
@@ -62,8 +62,7 @@ footer, header {
     align-content: flex-start;
     flex-wrap: wrap;
     padding: 10px;
-    flex: 1;
-    min-width: 300px;
+    flex: 1 1 300px;
 
     &Button {
         width: 80px;
@@ -126,7 +125,6 @@ footer, header {
 
     &__header {
         display: flex;
-        width: 100%;
     }
 
     &__info {
@@ -135,17 +133,20 @@ footer, header {
     }
 
     &__title {
-        flex: 1;
+        flex: 1 1 auto;
         align-self: center;
         margin-bottom: 10px;
-        font-weight: 700;
-        font-size: 18px;
-        text-decoration: none;
-        color: #0e6d45;
-    }
 
-    &__title:hover {
-        text-decoration: underline;
+        a {
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            color: #0e6d45;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     }
 
     &__public-info {

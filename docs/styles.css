@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 html,
 body {
@@ -29,39 +30,55 @@ header a {
   padding: 15px;
 }
 .newsLists {
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .newsLists-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   height: 100%;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .newsLists-content {
-  flex: 1 0 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   overflow-y: auto;
   background: #649173;
-  background: -moz-linear-gradient(#649173, #ddece2);
-  background: -webkit-linear-gradient(#649173, #ddece2);
-  background: -o-linear-gradient(#649173, #ddece2);
   background: -ms-linear-gradient(#649173, #ddece2);
 }
 .newsLists,
 .newsListsButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
 }
 .newsList {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 10px;
-  flex: 1;
-  min-width: 300px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 300px;
+          flex: 1 1 300px;
 }
 .newsListButton {
   width: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 80px;
   margin: 10px;
@@ -72,15 +89,15 @@ header a {
   border: 2px solid lightgrey;
 }
 .newsListButton[data-id='bbc-news'] {
-  background: url(./images/d87ae8ffc16c0fbe170e97a59418d735.png);
+  background: url(./images/25ef445b75c5e8cb2623d4c6793d563c.png);
   background-size: cover;
 }
 .newsListButton[data-id='abc-news'] {
-  background: url(./images/266e8c86fdade8c6ef1ce8a1b028384e.png);
+  background: url(./images/640ceaa69109586d1ec92d227d337fb3.png);
   background-size: cover;
 }
 .newsListButton[data-id='google-news'] {
-  background: url(./images/273419ed6d33596ee781bd13f354a7ae.png);
+  background: url(./images/69b088399d58f6546e62d4bf3124d821.png);
   background-size: cover;
 }
 input[type="checkbox"]:checked + .newsListButton {
@@ -97,9 +114,16 @@ input[type="checkbox"]:checked + .newsListButton {
   line-height: 24px;
 }
 .newsItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-bottom: 20px;
   width: 100%;
   background: #ffffff;
@@ -114,23 +138,34 @@ input[type="checkbox"]:checked + .newsListButton {
   padding-top: 5px;
 }
 .newsItem__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  width: 100%;
 }
 .newsItem__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .newsItem__title {
-  flex: 1;
-  align-self: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -ms-flex-item-align: center;
+      align-self: center;
   margin-bottom: 10px;
+}
+.newsItem__title a {
   font-weight: 700;
   font-size: 18px;
   text-decoration: none;
   color: #0e6d45;
 }
-.newsItem__title:hover {
+.newsItem__title a:hover {
   text-decoration: underline;
 }
 .newsItem__public-info {
@@ -159,9 +194,15 @@ input[type="checkbox"]:checked + .newsListButton {
   font-size: 30px;
   background: rgba(255, 255, 255, 0.5);
   color: grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   z-index: 9999;
 }
 .hidden,

@@ -4,14 +4,14 @@
   "description": "Front Camp 2017 by Viktoryia Makaranka",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "build:watch": "webpack --watch --config webpack.config.js",
-    "build:style": "stylelint less/*.less",
+    "build": "npm run lint:js && webpack --config webpack.config.js",
+    "build:watch": "npm run lint:js && webpack --watch --config webpack.config.js",
     "lint:style": "stylelint less/*.less",
     "lint:js": "eslint . --ext .js --max-warnings 0"
   },
   "author": "Viktoryia Makaranka",
   "devDependencies": {
+    "autoprefixer": "^7.2.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
@@ -19,11 +19,13 @@
     "css-loader": "^0.28.7",
     "element-dataset": "^2.2.6",
     "eslint": "^4.12.1",
+    "eslint-loader": "^1.9.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "fetch-polyfill": "^0.8.2",
     "file-loader": "^1.1.5",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
+    "postcss-loader": "^2.0.9",
     "style-loader": "^0.19.0",
     "stylelint": "^8.3.1",
     "webpack": "^3.8.1"
