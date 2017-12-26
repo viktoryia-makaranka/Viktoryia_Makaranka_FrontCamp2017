@@ -57,108 +57,36 @@ footer, header {
     }
 }
 
-.newsList {
+.newsListButton {
+    width: 80px;
     display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    padding: 10px;
-    flex: 1 1 300px;
-
-    &Button {
-        width: 80px;
-        display: flex;
-        height: 80px;
-        margin: 10px;
-        cursor: pointer;
-        background: #ffffff;
-        padding: 15px;
-        border-radius: 3px;
-        border: 2px solid lightgrey;
-
-        &[data-id='bbc-news'] {
-            background: url('../images/bbc.png');
-            background-size: cover;
-        }
-
-        &[data-id='abc-news'] {
-            background: url('../images/abc.png');
-            background-size: cover;
-        }
-
-        &[data-id='google-news'] {
-            background: url('../images/google.png');
-            background-size: cover;
-        }
-        input[type="checkbox"]:checked + & {
-            border-color: #35e29a;
-        }
-    }
-
-    &-title {
-        color: grey;
-        margin-top: 10px;
-        height: 54px;
-        text-overflow: ellipsis;
-        word-wrap: nowrap;
-        overflow: hidden;
-        font-size: 18px;
-        line-height: 24px;
-    }
-}
-.newsItem {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    width: 100%;
+    height: 80px;
+    margin: 10px;
+    cursor: pointer;
     background: #ffffff;
     padding: 15px;
     border-radius: 3px;
     border: 2px solid lightgrey;
 
-    img {
-        width: 110px;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        padding-top: 5px;
+    &[data-id='bbc-news'] {
+        background: url('../images/bbc.png');
+        background-size: cover;
     }
 
-    &__header {
-        display: flex;
+    &[data-id='abc-news'] {
+        background: url('../images/abc.png');
+        background-size: cover;
     }
 
-    &__info {
-        display: flex;
-        flex-direction: column;
+    &[data-id='google-news'] {
+        background: url('../images/google.png');
+        background-size: cover;
     }
-
-    &__title {
-        flex: 1 1 auto;
-        align-self: center;
-        margin-bottom: 10px;
-
-        a {
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            color: #0e6d45;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    }
-
-    &__public-info {
-        color: grey;
-        margin-top: 10px;
-
-        span {
-            font-size: 16px;
-            line-height: 20px;
-        }
+    input[type="checkbox"]:checked + & {
+        border-color: #35e29a;
     }
 }
+
 
 .separator {
     margin: 0 5px;

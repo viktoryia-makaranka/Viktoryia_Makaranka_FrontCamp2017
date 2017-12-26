@@ -1,35 +1,48 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
-const extractLess = new ExtractTextPlugin({
-  filename: 'styles.css',
-});
+const extractLess = new ExtractTextPlugin('[name].css');
 
-module.exports = {
+module.exports =  {
   entry: [
     'babel-polyfill',
     'fetch-polyfill',
     './src/js/index.js',
   ],
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, '../docs'),
+    publicPath: '',
+    filename: 'js/[name].bundle.js',
+    chunkFilename: 'js/[name].bundle.js',
+    sourceMapFilename: 'js/[name].map',
+  },
+  resolve: {
+    alias: {
+      App: path.resolve(__dirname, '../src'),
+    },
   },
   module: {
     rules: [
       {
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        query: {
-          configFile: '.eslintrc',
-        },
-      }, {
         test: /\.js$/,
         exclude: [/node_modules/],
         use: {
           loader: 'babel-loader',
+          options: {
+            presets: [['env', {
+              targets: {
+                browsers: ['last 2 versions', 'ie >= 10'],
+              },
+            }]],
+          },
+        },
+      }, {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
         },
       }, {
         test: /\.less$/,
@@ -53,7 +66,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'images/[name].[ext]',
+            name: './images/[name].[ext]',
           },
         },
       },
@@ -61,12 +74,10 @@ module.exports = {
   },
   plugins: [
     extractLess,
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        eslint: {
-          /* your eslint loader config */
-        },
-      },
+    new HtmlWebpackPlugin({
+      title: 'Webpack by Viktoryia Makaranka',
+      template: './src/index.html',
     }),
+    new CleanWebpackPlugin(['../docs']),
   ],
 };

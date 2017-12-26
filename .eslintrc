@@ -3,12 +3,14 @@
     "es6": true,
     "browser": true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
       "experimentalObjectRestSpread": true
     },
-    "sourceType": "module"
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
   },
   "rules": {
     "comma-dangle": [
