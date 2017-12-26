@@ -4,8 +4,8 @@
   "description": "Front Camp 2017 by Viktoryia Makaranka",
   "private": true,
   "scripts": {
-    "build:dev": "webpack --config webpack/webpack.dev.config.js",
-    "build:watch": "webpack --watch --config webpack/webpack.dev.config.js",
+    "build:dev": "npm run lint:js && webpack --config webpack/webpack.dev.config.js",
+    "build:watch": "npm run lint:js && webpack --watch --config webpack/webpack.dev.config.js",
     "build:prod": "npm run lint:js && webpack --config webpack/webpack.common.config.js -p",
     "start": "webpack-dev-server --open --config webpack/webpack.dev.config.js",
     "lint:style": "stylelint less/*.less",
