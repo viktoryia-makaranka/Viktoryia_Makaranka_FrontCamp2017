@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+footer, header {
+    background: #0e6d45;
+    color: #ffffff;
+
+    .container {
+        h1, div {
+            margin: 0 10px;
+        }
+    }
+
+    a {
+        color: #ffffff;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.newsLists {
+    flex-wrap: wrap;
+
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    &-content {
+        flex: 1 0 auto;
+        overflow-y: auto;
+        background: #649173;
+        background: -moz-linear-gradient(#649173, #ddece2);
+        background: -webkit-linear-gradient(#649173, #ddece2);
+        background: -o-linear-gradient(#649173, #ddece2);
+        background: -ms-linear-gradient(#649173, #ddece2);
+    }
+
+    &, &Buttons {
+        display: flex;
+        width: 100%;
+    }
+}
+
+.newsListButton {
+    width: 80px;
+    display: flex;
+    height: 80px;
+    margin: 10px;
+    cursor: pointer;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 3px;
+    border: 2px solid lightgrey;
+
+    &[data-id='bbc-news'] {
+        background: url('../images/bbc.png');
+        background-size: cover;
+    }
+
+    &[data-id='abc-news'] {
+        background: url('../images/abc.png');
+        background-size: cover;
+    }
+
+    &[data-id='google-news'] {
+        background: url('../images/google.png');
+        background-size: cover;
+    }
+    input[type="checkbox"]:checked + & {
+        border-color: #35e29a;
+    }
+}
+
+
+.separator {
+    margin: 0 5px;
+}
+
+.requestError {
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px;
+}
+.loading-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-weight: 700;
+    font-size: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.hidden, input[type=checkbox] {
+    display: none;
+}
