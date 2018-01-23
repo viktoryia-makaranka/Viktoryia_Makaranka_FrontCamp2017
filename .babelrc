@@ -1,3 +1,8 @@
 {
-  "plugins": ["syntax-dynamic-import", "transform-object-rest-spread"]
+  plugins: ['syntax-dynamic-import', 'transform-object-rest-spread', './noConsoleNoCommentsBabelPlugin/no-console__no-comments.babel.plugin.js'],
+  presets: [['env', {
+    targets: {
+      browsers: ['last 2 versions'],
+    },
+  }]],
 }

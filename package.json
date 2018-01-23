@@ -6,7 +6,7 @@
   "scripts": {
     "build:dev": "npm run lint:js && webpack --config webpack/webpack.dev.config.js",
     "build:watch": "npm run lint:js && webpack --watch --config webpack/webpack.dev.config.js",
-    "build:prod": "npm run lint:js && webpack --config webpack/webpack.common.config.js -p",
+    "build:prod": "npm run lint:js && webpack --config webpack/webpack.prod.config.js -p",
     "start": "webpack-dev-server --open --config webpack/webpack.dev.config.js",
     "lint:style": "stylelint less/*.less",
     "lint:js": "eslint . --ext .js --max-warnings 0"
