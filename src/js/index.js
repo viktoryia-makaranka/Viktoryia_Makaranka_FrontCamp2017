@@ -9,13 +9,12 @@ const downloadNews = e => {
   NEWS_LISTS_BUTTONS.removeEventListener('click', downloadNews);
   import(/* webpackChunkName: 'fetchNews' */ 'App/modules/newsLists/newsLists')
     .then(module => {
-      const fetchNews = module.default;
-      fetchNews();
+      const toggleNewsList = module.default;
+      toggleNewsList(e.target.dataset.id);
       const nodesArray = [...document.querySelectorAll('input[name="newsSource"]')];
       nodesArray.forEach(sourceNode => {
         sourceNode.addEventListener('change', ({target}) => {
-          const listNode = getListNode(target.value);
-          if (listNode) listNode.classList.toggle('hidden');
+          toggleNewsList(target.value);
         });
       });
     });
@@ -24,3 +23,23 @@ const downloadNews = e => {
 document.addEventListener('DOMContentLoaded', () => {
   NEWS_LISTS_BUTTONS.addEventListener('click', downloadNews);
 });
+
+
+//Prototype Creational Pattern
+Object.defineProperties(Element.prototype, {
+  'show': {
+    enumerable: false,
+    value: function() {
+      this.classList.remove('hidden');
+      return this;
+    },
+  },
+  'hide': {
+    enumerable: false,
+    value: function() {
+      this.classList.add('hidden');
+      return this;
+    },
+  },
+});
+
