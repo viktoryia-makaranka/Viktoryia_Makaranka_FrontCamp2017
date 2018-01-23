@@ -11,8 +11,12 @@ export const getListNode = (sourceId) => document.querySelector(`.newsList--${so
 //Decorator Structural Pattern
 export const fetchDecorator = async (fetchMethod) => {
   LOADING_MASK.show();
-  await fetchMethod()
-    .then(() => ERROR_FIELD.hide())
-    .catch(err => ERROR_FIELD.show())
-    .finally(() => LOADING_MASK.hide());
+  try {
+    await fetchMethod();
+    ERROR_FIELD.hide();
+  } catch (err) {
+    ERROR_FIELD.show();
+  } finally {
+    LOADING_MASK.hide();
+  }
 };
