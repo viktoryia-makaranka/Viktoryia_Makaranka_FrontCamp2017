@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use('/blogs', blogs);
 
 app.use((req, res) => {
-  res.render('template');
+  res.render('template', {title: 'Express', message: `You are at the ${req.url === '/' ? 'root' : req.url} page`});
 });
 
 app.listen(3000);
