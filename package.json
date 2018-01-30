@@ -9,7 +9,8 @@
     "build:prod": "npm run lint:js && webpack --config webpack/webpack.prod.config.js -p",
     "start": "webpack-dev-server --open --config webpack/webpack.dev.config.js",
     "lint:style": "stylelint less/*.less",
-    "lint:js": "eslint . --ext .js --max-warnings 0"
+    "lint:js": "eslint . --ext .js --max-warnings 0",
+    "express:start": "nodemon ./server/web-server.js"
   },
   "author": "Viktoryia Makaranka",
   "devDependencies": {
@@ -39,5 +40,10 @@
     "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.14.11",
+    "pug": "^2.0.0-rc.4",
+    "winston": "^3.0.0-rc1"
+  }
 }
