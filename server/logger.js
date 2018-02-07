@@ -1,14 +1,15 @@
-const { createLogger, format, transports } = require('winston');
+import { createLogger, format, transports } from 'winston';
+
 const { combine, timestamp, prettyPrint } = format;
 
 const logger = createLogger({
   format: combine(
     timestamp(),
-    prettyPrint()
+    prettyPrint(),
   ),
   transports: [
-    new transports.File({ filename: 'combined.log' })
-  ]
+    new transports.File({ filename: 'combined.log' }),
+  ],
 });
 
-module.exports = logger;
+export default logger;

@@ -1,9 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
+import express from 'express';
+import mongoose from 'mongoose';
+import path from 'path';
 
-const logger = require('./logger');
-const blogs = require('./blogs');
+import logger from './logger';
+import blogs from './blogs';
 
 const app = express();
 
@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost/frontcamp');
 app.use((req, res, next) => {
   logger.log({
     level: 'info',
-    message: req.url
+    message: req.url,
   });
   next();
 });
@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 app.use('/blogs', blogs);
 
 app.use((req, res) => {
-  res.render('template', {title: 'Express', message: `You are at the ${req.url === '/' ? 'root' : req.url} page`});
+  res.render('template', { title: 'Express', message: `You are at the ${ req.url === '/' ? 'root' : req.url } page` });
 });
 
 app.listen(3000);
