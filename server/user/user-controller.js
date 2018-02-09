@@ -6,7 +6,6 @@ class UserController extends Controller {
     passport.authenticate(strategy, (err, user, info) => {
       if (err) return next(err);
       if (!user) {
-        console.log(info.errMsg);
         return res.render(view, {errMsg: info.errMsg});
       }
       req.logIn(user, function (err) {
