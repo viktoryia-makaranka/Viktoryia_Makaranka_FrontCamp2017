@@ -6,11 +6,31 @@ export default class Controller {
     this.facade = facade;
   }
 
+  async create(req, res, next) {
+    try {
+      res
+        .status(httpStatus.CREATED)
+        .json(await this.facade.create(req.body));
+    } catch (err) {
+      next(err);
+    }
+  }
+
   async find(req, res, next) {
     try {
       res
         .status(httpStatus.OK)
         .json(await this.facade.find(req.query));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async findOne(req, res, next) {
+    try {
+      const data = await this.facade.findOne(req.query);
+      if (!data) return res.sendStatus(httpStatus.NOT_FOUND);
+      res.status(httpStatus.OK).json(data);
     } catch (err) {
       next(err);
     }

@@ -10,7 +10,7 @@ module.exports = (env) => {
     entry: [
       'babel-polyfill',
       'fetch-polyfill',
-      './src/js/index.js',
+      './src/js/passport-strategy.js',
     ],
     resolve: {
       alias: {

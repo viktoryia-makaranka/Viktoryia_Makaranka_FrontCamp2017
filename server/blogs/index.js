@@ -1,7 +1,12 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import BlogController from './blog-controller';
 
 const router = Router();
+
+router.use((req, res, next) => {
+  if (req.user) return next();
+  return res.redirect('/login');
+});
 
 router.route('/')
   .get((...args) => BlogController.find(...args))

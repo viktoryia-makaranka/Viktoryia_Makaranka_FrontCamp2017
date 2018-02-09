@@ -1,19 +1,29 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import path from 'path';
 
 import logger from './logger';
 import blogs from './blogs';
+import passportRouter from './passport/passport-routes';
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+mongoose.connect('mongodb://localhost/frontcamp');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-mongoose.connect('mongodb://localhost/frontcamp');
+app.use(session({
+  secret: 'veryverysecret',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 app.use((req, res, next) => {
   logger.log({
@@ -23,6 +33,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/', passportRouter);
 app.use('/blogs', blogs);
 
 app.use((req, res) => {

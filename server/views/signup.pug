@@ -1,0 +1,14 @@
+html
+    head
+        title= title
+    body
+        h1 Sign Up
+        form(method='POST' action='/signup')
+            div
+                label(for='username') Username:
+                input#username.form-control(type='text', placeholder='username' name='username')
+            div
+                label(for='password') Password:
+                input#password.form-control(type='password', placeholder='password' name='password')
+            button(type='submit') Sign up
+            p= errMsg
