@@ -1,0 +1,8 @@
+{
+  plugins: ['syntax-dynamic-import', 'transform-object-rest-spread'],
+  presets: [['env', {
+    targets: {
+      browsers: ['last 2 versions'],
+    },
+  }], 'react'],
+}

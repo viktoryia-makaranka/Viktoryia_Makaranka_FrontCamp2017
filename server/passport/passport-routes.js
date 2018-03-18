@@ -19,7 +19,7 @@ router.route('/signup')
 router.route('/login')
   .get((req, res) => res.render('login'))
   .post((req, res, next) => {
-    UserController.authentificate({ req, res, next, passport, strategy:'local-login', view: 'login' });
+    UserController.authentificate({ req, res, next, passport, strategy: 'local-login', view: 'login' });
   });
 
 router.route('/logout').get((req, res) => {
