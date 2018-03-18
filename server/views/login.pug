@@ -1,0 +1,15 @@
+html
+    head
+        title= title
+    body
+        h1 Log In
+        a(href='/logout') Logout
+        form(method='POST' action='/login')
+            div
+                label(for='username') Username:
+                input#username.form-control(type='text', placeholder='username' name='username')
+            div
+                label(for='password') Password:
+                input#password.form-control(type='password', placeholder='password' name='password')
+            button(type='submit') Log in
+            p= errMsg
