@@ -8,13 +8,12 @@ import path from 'path';
 
 import logger from './logger';
 import blogs from './blogs';
-import passportRouter from './passport/passport-routes';
 
+import passportRouter from './passport/passport-routes';
 
 import cors from 'cors'
 
 const app = express();
-
 
 app.set('port', process.env.PORT || 3000);
 app.set('node-env', 'development');

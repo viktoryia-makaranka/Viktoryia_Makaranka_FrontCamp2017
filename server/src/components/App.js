@@ -1,84 +1,62 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import Blogs from './Blogs'
 import AddPost from './AddPost'
 import FilterPosts from './FilterPosts'
 
-export default class App extends Component {
+import BLOGS_API from '../modules/blogs/blogsActions'
+
+class App extends Component {
   constructor(props) {
-    super(props);
-    this.addBlog = this.addBlog.bind(this);
-    this.deleteBlog = this.deleteBlog.bind(this);
-    this.filterPosts = this.filterPosts.bind(this);
-    this.showAll = this.showAll.bind(this);
-    this.state = {
-      blogs: [],
-      shownBlogs: []
-    };
+    super(props)
+  }
+
+  static fetchData(store) {
+    return store.dispatch(BLOGS_API.fetchBlogs(this.props.author))
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/blogs', {
-      headers: {
-        'content-type': 'application/json'
-      },
-    }).then(response => response.json())
-      .then(response => {
-        this.setState({
-          blogs: response,
-          shownBlogs: response
-        })
-      })
-      .catch(error => {
-        alert(error)
-      });
-  }
-
-  addBlog(blog) {
-    this.setState({ blogs: [blog, ...this.state.blogs] })
-    fetch('http://localhost:3001/blogs', {
-      headers: {
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify([blog])
-    })
-  }
-
-  deleteBlog(blog) {
-    let blogs = this.state.blogs
-    const indexOfBlog = blogs.indexOf(blog)
-    blogs.splice(indexOfBlog, 1)
-    this.setState({ blogs: blogs })
-    fetch(`http://localhost:3001/blogs/${blog._id}`, {
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'DELETE'
-    })
-  }
-
-  filterPosts(author) {
-    this.setState({ shownBlogs: this.state.blogs.filter(blog => blog.author === author) })
-  }
-
-  showAll() {
-    this.setState({ shownBlogs: this.state.blogs })
-  }
-
-  authors() {
-    let authorsSet = new Set()
-    this.state.blogs.forEach((blog) => authorsSet.add(blog.author))
-    return Array.from(authorsSet)
+    this.props.fetchBlogs(this.props.author)
   }
 
   render() {
     return (
       <div>
-        <AddPost addBlog={ this.addBlog }/>
-        <FilterPosts authors={ this.authors() } filterPosts={ this.filterPosts } showAll={ this.showAll }/>
-        <Blogs blogs={ this.state.shownBlogs } deleteBlog={ this.deleteBlog }/>
+        <AddPost addBlog={ this.props.addBlog }/>
+        <FilterPosts blogs={ this.props.blogs }
+                     filterBlogs={ this.props.filterBlogs }
+                     val={ this.props.author }
+                     clearFilter={ this.props.clearFilter }/>
+        <Blogs blogs={ this.props.filteredBlogs }
+               deleteBlog={ this.props.deleteBlog }/>
       </div>
-    );
+    )
   }
 }
+
+const mapStateToProps = state => ({
+  blogs: state.blogs.blogs,
+  filteredBlogs: state.blogs.filteredBlogs,
+  author: state.blogs.author
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchBlogs(author) {
+    dispatch(BLOGS_API.fetchBlogs(author))
+  },
+  filterBlogs(author) {
+    dispatch(BLOGS_API.filterBlogs(author))
+  },
+  clearFilter() {
+    dispatch(BLOGS_API.clearFilter())
+  },
+  addBlog(blog) {
+    dispatch(BLOGS_API.addBlog(blog))
+  },
+  deleteBlog(blog) {
+    dispatch(BLOGS_API.deleteBlog(blog))
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

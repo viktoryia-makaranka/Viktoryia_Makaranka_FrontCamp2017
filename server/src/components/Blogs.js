@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react';
+
 import Blog from './Blog'
 
 const Blogs = ({ blogs, deleteBlog }) => {
-  const list = blogs.map((blog, index) =>
-    <Blog key={ index } blog={ blog } deleteBlog={ deleteBlog }/>
+  return (
+    <div className="blogs">
+      { blogs && blogs.length ?
+        blogs.map((blog, index) => {
+          return (
+            <Blog key={ index } blog={ blog } deleteBlog={ deleteBlog }/>
+          )
+        }) :
+        <h2>No blogs found</h2>
+      }
+    </div>
   )
-  return <div className="blogs">
-    { list }
-  </div>
 }
 
-export default Blogs
+export default Blogs;
