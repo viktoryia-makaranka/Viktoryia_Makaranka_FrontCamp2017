@@ -16,3 +16,8 @@
     margin-bottom: 20px;
     padding: 20px;
 }
+
+.not-found {
+    font-size: 60px;
+    font-weight: bold;
+}

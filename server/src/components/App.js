@@ -5,7 +5,7 @@ import Blogs from './Blogs'
 import AddPost from './AddPost'
 import FilterPosts from './FilterPosts'
 
-import BLOGS_API from '../modules/blogs/blogsActions'
+import BLOGS_API from '../modules/blogs/actions'
 
 class App extends Component {
   constructor(props) {

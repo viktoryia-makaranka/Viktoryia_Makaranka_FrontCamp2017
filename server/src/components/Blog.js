@@ -12,5 +12,4 @@ const Blog = ({ blog, deleteBlog }) => {
   </div>
 }
 
-
 export default Blog

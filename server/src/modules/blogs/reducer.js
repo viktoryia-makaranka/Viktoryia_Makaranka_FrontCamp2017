@@ -1,5 +1,5 @@
 import 'isomorphic-fetch'
-import { UPDATE_BLOGS, FILTER_BLOGS, CLEAR_FILTER } from './blogsActions.js'
+import { UPDATE_BLOGS, FILTER_BLOGS, CLEAR_FILTER } from './actions.js'
 
 const initialState = {
   blogs: [],
@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
     case CLEAR_FILTER: {
       return ({
         ...state,
-        author: initialState.author,
+        author: 'ALL',
         filteredBlogs: state.blogs
       })
     }
