@@ -49,6 +49,7 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "angularjs": "1.6.1",
     "express": "^4.16.3",
     "http-status": "^1.0.1",
     "mongodb-core": "^3.0.5",
