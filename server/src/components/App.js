@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import Blogs from './Blogs'
 import AddPost from './AddPost'
 import FilterPosts from './FilterPosts'
 
 import BLOGS_API from '../modules/blogs/actions'
+import { logout } from '../modules/auth/actions'
 
 class App extends Component {
   constructor(props) {
@@ -13,37 +15,43 @@ class App extends Component {
   }
 
   static fetchData(store) {
-    return store.dispatch(BLOGS_API.fetchBlogs(this.props.author))
+    return store.dispatch(BLOGS_API.fetchBlogs(this.props.isLoggedIn, this.props.author))
   }
 
   componentDidMount() {
-    this.props.fetchBlogs(this.props.author)
+    this.props.fetchBlogs(this.props.isLoggedIn, this.props.author)
   }
 
   render() {
     return (
-      <div>
-        <AddPost addBlog={ this.props.addBlog }/>
-        <FilterPosts blogs={ this.props.blogs }
-                     filterBlogs={ this.props.filterBlogs }
-                     val={ this.props.author }
-                     clearFilter={ this.props.clearFilter }/>
-        <Blogs blogs={ this.props.filteredBlogs }
-               deleteBlog={ this.props.deleteBlog }/>
-      </div>
+      !this.props.isLoggedIn ? (
+        <Redirect to='/login'/>
+      ) : (
+        <div>
+          <button onClick={this.props.logout}>Logout</button>
+          <AddPost addBlog={this.props.addBlog}/>
+          <FilterPosts blogs={this.props.blogs}
+                       filterBlogs={this.props.filterBlogs}
+                       val={this.props.author}
+                       clearFilter={this.props.clearFilter}/>
+          <Blogs blogs={this.props.filteredBlogs}
+                 deleteBlog={this.props.deleteBlog}/>
+        </div>
+      )
     )
   }
 }
 
-const mapStateToProps = state => ({
-  blogs: state.blogs.blogs,
-  filteredBlogs: state.blogs.filteredBlogs,
-  author: state.blogs.author
+const mapStateToProps = ({ blogs, auth }) => ({
+  blogs: blogs.blogs,
+  filteredBlogs: blogs.filteredBlogs,
+  author: blogs.author,
+  isLoggedIn: auth.isLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchBlogs(author) {
-    dispatch(BLOGS_API.fetchBlogs(author))
+  fetchBlogs(isLoggedIn, author) {
+    dispatch(BLOGS_API.fetchBlogs(isLoggedIn, author))
   },
   filterBlogs(author) {
     dispatch(BLOGS_API.filterBlogs(author))
@@ -56,7 +64,10 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteBlog(blog) {
     dispatch(BLOGS_API.deleteBlog(blog))
+  },
+  logout() {
+    dispatch(logout())
   }
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

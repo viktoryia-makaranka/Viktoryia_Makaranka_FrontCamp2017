@@ -20,7 +20,7 @@ export default class Controller {
     try {
       res
         .status(httpStatus.OK)
-        .json(await this.facade.find(req.query));
+        .json(await this.facade.find(req.query.findQuery));
     } catch (err) {
       next(err);
     }

@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -12,6 +12,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-});
+  token: {
+    type: String,
+  },
+})
 
-export default mongoose.model('User', userSchema, 'users');
+export default mongoose.model('User', UserSchema, 'users')

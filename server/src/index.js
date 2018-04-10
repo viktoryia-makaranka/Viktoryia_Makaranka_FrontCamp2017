@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 
 import reducers from './modules/index'
 import App from './components/App'
+import Login from './components/Login'
 import NoMatch from './components/NoMatch'
 
 const store = createStore(
@@ -21,6 +22,8 @@ render (
   <Provider store={ store }>
     <BrowserRouter>
       <Switch>
+        <Route exact path='/login' component={ Login } />
+        <Route exact path='/signin' component={ Login } />
         <Route exact path='/' component={ App } />
         <Route component={ NoMatch } />
       </Switch>

@@ -1,31 +1,25 @@
-import { Router } from 'express';
-import passport from 'passport';
-import UserController from '../user/user-controller';
-import passportConfig from './passport-config';
+import { Router } from 'express'
+import passport from 'passport'
+import httpStatus from 'http-status'
+import UserFacade from '../user/user-facade'
 
-const router = Router();
+import passportConfig, { generateToken } from './passport-config'
+const router = Router()
 
-passportConfig(passport);
+router.use(passport.initialize())
 
-router.use(passport.initialize());
-router.use(passport.session());
+passportConfig(passport)
 
 router.route('/signup')
-  .get((req, res) => res.render('signup'))
-  .post((req, res, next) => {
-    UserController.authentificate({ req, res, next, passport, strategy: 'local-signup', view: 'signup' });
-  });
+  .post(async (req, res, next) => {
+    const user = await UserFacade.findOne({ username: req.body.username })
+    if (user) return res.send({ status: httpStatus.ALREADY_REPORTED,  errMsg : 'username already exists' })
+    const newUser = await UserFacade.create({ username: req.body.username, password: req.body.password})
+    if (!newUser) res.status(httpStatus.NOT_MODIFIED).json({ errMsg: 'User wasn\'t created' })
+    next()
+  }, passport.authenticate('local', { session: false }), generateToken)
 
-router.route('/login')
-  .get((req, res) => res.render('login'))
-  .post((req, res, next) => {
-    UserController.authentificate({ req, res, next, passport, strategy: 'local-login', view: 'login' });
-  });
+router.route('/token')
+  .post(passport.authenticate('local', { session: false }), generateToken)
 
-router.route('/logout').get((req, res) => {
-  req.logout();
-  req.session.destroy();
-  return res.redirect('/login');
-});
-
-export default router;
+export default router
