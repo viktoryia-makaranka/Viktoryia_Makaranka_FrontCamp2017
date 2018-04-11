@@ -1,6 +1,5 @@
 require('element-dataset').default();
 
-import { getListNode } from './helpers';
 import { NEWS_LISTS_BUTTONS } from './const';
 
 import 'App/less/styles.less';
