@@ -1,4 +1,4 @@
-import { getDoneTodos, getNotDoneTodos, addTodo, changeTodoStatus, updateTodo, sorting } from './todo-service'
+import { getDoneTodos, getNotDoneTodos, addTodo, changeTodoStatus, updateTodo, sorting } from './service'
 
 export function controller() {
   this.updateState = () => {

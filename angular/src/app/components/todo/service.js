@@ -49,9 +49,9 @@ export const updateTodo = (todo, text) => {
 
 export const sorting = (property, order, arr) => {
   arr.sort((a, b) => {
-    const aProp = a[property].hasOwnProperty('toLowerCase') ? a[property].toLowerCase() : a[property]
-    const bProp = b[property].hasOwnProperty('toLowerCase') ? b[property].toLowerCase() : b[property]
+    const aProp = a[property].toLowerCase ? a[property].toLowerCase() : a[property]
+    const bProp = b[property].toLowerCase ? b[property].toLowerCase() : b[property]
     const multiplicator = order === 'asc' ? 1 : -1
-    return aProp> bProp ? 1*multiplicator : aProp === bProp ? 0 : -1*multiplicator
+    return aProp > bProp ? 1*multiplicator : aProp === bProp ? 0 : -1*multiplicator
   })
 }

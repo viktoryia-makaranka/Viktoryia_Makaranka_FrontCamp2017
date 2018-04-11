@@ -31,8 +31,6 @@ module.exports = function makeWebpackConfig() {
    */
   config.entry = isTest ? void 0 : {
     app: './src/app/app.js',
-    todo: './src/app/components/todo/todo.js',
-    daysFilter: './src/app/filters/date-filter.js'
   };
 
   /**

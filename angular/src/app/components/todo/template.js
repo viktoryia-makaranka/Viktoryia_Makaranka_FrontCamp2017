@@ -1,15 +1,16 @@
 export const template = `
     <div class="container">
+        <h1 class="title">Great Todo App</h1>
         <div class='row'>
-          <form>
-              <input type="text" ng-model='$ctrl.newTodoText' ng-focus='$ctrl.error = ""'/>
-              <div ng-show='$ctrl.error'>{{$ctrl.error}}</div>
-              <button type="submit"
-                      ng-click="$ctrl.addNewTodo($ctrl.newTodoText)">
-                    <span ng-show='$ctrl.activeTodo'>Edit</span>
-                    <span ng-show='!$ctrl.activeTodo'>Add</span>
-              </button>
-          </form>
+            <form>
+                <input type="text" ng-model='$ctrl.newTodoText' ng-focus='$ctrl.error = ""'/>
+                <div ng-show='$ctrl.error'>{{$ctrl.error}}</div>
+                <button type="submit"
+                        ng-click="$ctrl.addNewTodo($ctrl.newTodoText)">
+                      <span ng-show='$ctrl.activeTodo'>Edit</span>
+                      <span ng-show='!$ctrl.activeTodo'>Add</span>
+                </button>
+            </form>
         </div>
         <div class='row'>Show last <input type="number" ng-model='$ctrl.filterDaysCount'/> days</div>
         <div class='row'>

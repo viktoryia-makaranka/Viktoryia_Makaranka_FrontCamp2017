@@ -11,9 +11,7 @@ let app = () => {
 };
 
 class AppCtrl {
-  constructor() {
-    this.url = 'https://github.com/preboot/angular-webpack';
-  }
+  constructor() {}
 }
 
 const MODULE_NAME = 'app';
@@ -23,3 +21,7 @@ angular.module(MODULE_NAME, [])
   .controller('AppCtrl', AppCtrl);
 
 export default MODULE_NAME;
+
+require('./components')
+require('./filters')
+require('./directives')
