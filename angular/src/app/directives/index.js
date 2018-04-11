@@ -1,0 +1,2 @@
+require('./addArticle')
+require('./textValidator')
