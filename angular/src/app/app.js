@@ -11,7 +11,9 @@ let app = () => {
 };
 
 class AppCtrl {
-  constructor() {}
+  constructor() {
+    this.url = 'https://github.com/preboot/angular-webpack';
+  }
 }
 
 const MODULE_NAME = 'app';

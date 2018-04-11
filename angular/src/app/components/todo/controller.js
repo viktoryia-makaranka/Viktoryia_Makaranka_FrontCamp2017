@@ -1,6 +1,6 @@
 import { getDoneTodos, getNotDoneTodos, addTodo, changeTodoStatus, updateTodo, sorting } from './service'
 
-export function controller() {
+export function TodoController() {
   this.updateState = () => {
     this.doneTodos = getDoneTodos()
     this.notDoneTodos = getNotDoneTodos()

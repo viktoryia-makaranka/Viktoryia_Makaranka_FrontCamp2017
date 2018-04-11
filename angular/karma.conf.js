@@ -17,6 +17,16 @@ module.exports = function karmaConfig (config) {
       'coverage'
     ],
 
+    plugins: [
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-phantomjs-launcher',
+      'karma-babel-preprocessor',
+      'karma-webpack',
+      'karma-coverage',
+      'karma-sourcemap-loader'
+    ],
+
     files: [
       // Grab all files in the app folder that contain .spec.
       'src/tests.webpack.js'
@@ -26,7 +36,7 @@ module.exports = function karmaConfig (config) {
       // Reference: http://webpack.github.io/docs/testing.html
       // Reference: https://github.com/webpack/karma-webpack
       // Convert files with webpack and load sourcemaps
-      'src/tests.webpack.js': ['webpack', 'sourcemap']
+      'src/tests.webpack.js': ['babel', 'webpack', 'sourcemap']
     },
 
     browsers: [

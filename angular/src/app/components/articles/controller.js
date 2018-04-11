@@ -3,17 +3,24 @@ import { getArticles, addArticle, updateArticle } from './service'
 class ArticlesController {
   $onInit() {
     this.articles = getArticles()
+    this.showForm = false
+    this.clearArticle = {
+      title: '',
+      content: ''
+    }
+    this.newArticle = this.clearArticle
+    this.activeArticle = ''
   }
 
-  addArticle = () => {
+  addArticle() {
     addArticle(this.newArticle)
   }
 
-  updateArticle = () => {
+  updateArticle() {
     updateArticle(this.activeArticle, this.newArticle)
   }
 
-  setArticle = () => {
+  setArticle() {
     if (this.isNewArticle()) {
       this.addArticle()
     } else {
@@ -23,29 +30,18 @@ class ArticlesController {
     this.activeArticle = ''
   }
 
-  showForm = false
-
-  showClearForm = () => {
+  showClearForm() {
     this.activeArticle = ''
     this.newArticle = this.clearArticle
     this.showForm = true
   }
-
-  clearArticle = {
-      title: '',
-      content: ''
-  }
-
-  newArticle = this.clearArticle
-
-  activeArticle = ''
 
   setActiveArticle(article) {
     this.activeArticle = article
     this.newArticle = {...article}
   }
 
-  isNewArticle = () => {
+  isNewArticle() {
     return !!(!this.activeArticle)
   }
 }

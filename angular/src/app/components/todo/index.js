@@ -1,9 +1,9 @@
 import { template } from './template'
-import { controller } from './controller'
+import { TodoController } from './controller'
 
 angular.
 module('app').
 component('todoList', {
   template,
-  controller,
+  controller: TodoController,
 });
